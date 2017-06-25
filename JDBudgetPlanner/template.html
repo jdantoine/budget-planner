@@ -1,0 +1,171 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>JDBudgetPlanner</title>
+
+    <!-- Bootstrap Core CSS -->
+    <link href="Content/bootstrap.css" rel="stylesheet" />
+
+    <link href="Content/main.css" rel="stylesheet" />
+
+    <!-- Fonts -->
+    <link href="http://fonts.googleapis.com/css?family=Roboto:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800" rel="stylesheet" type="text/css">
+    <link href='https://fonts.googleapis.com/css?family=Montserrat:700' rel='stylesheet' type='text/css'>
+    <link href='https://fonts.googleapis.com/css?family=Lobster:400' rel='stylesheet' type='text/css'>
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+</head>
+
+<body>
+
+    <div class="brand">JDBudgetPlanner</div>
+
+    <!-- Navigation -->
+    <nav class="navbar navbar-default" role="navigation">
+        <div class="container">
+            <!-- Brand and toggle get grouped for better mobile display -->
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <!-- navbar-brand is hidden on larger screens, but visible when the menu is collapsed -->
+                <a class="navbar-brand" href="index.html">JDBudgetPlanner</a>
+            </div>
+            <!-- Collect the nav links, forms, and other content for toggling -->
+            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                <ul class="nav navbar-nav">
+                    <li>
+                        <a href="#">Dashboard</a>
+                    </li>
+                    <li>
+                        <a href="#">Budget</a>
+                    </li>
+                    <li>
+                        <a href="#">Transactions</a>
+                    </li>
+                    <li>
+                        <a href="#">Household</a>
+                    </li>
+                </ul>
+            </div>
+            <!-- /.navbar-collapse -->
+        </div>
+        <!-- /.container -->
+    </nav>
+
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-6 content">
+                    <h2>H2 Header</h2>
+                    <h3>H3 Header</h3>
+                    <p>Lorem ipsum dolor sit amet, eros morbi erat commodo, lorem luctus pellentesque ullamcorper, nobis curabitur. Ultrices lacus eget libero enim in, donec netus mauris orci adipiscing elit, wisi vestibulum ut molestie interdum vulputate per, nulla amet maecenas praesent, vel dignissim. Placerat hac proin. Luctus cubilia fermentum, metus quisque eget, lectus nam duis. Per eros erat sit etiam, fusce phasellus metus mauris commodo taciti nec</p>
+
+                    <p><a href="#">This is a link!</a></p>
+                    <ul>
+                        <li>This is a list!</li>
+                    </ul>
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Table Header</th>
+                                <th>Table Header</th>
+                                <th>Table Header</th>
+                                <th>Table Header</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>Table content</td>
+                                <td>Table content</td>
+                                <td>Table content</td>
+                                <td>Table content</td>
+                            </tr>
+                            <tr>
+                                <td>Table content</td>
+                                <td>Table content</td>
+                                <td>Table content</td>
+                                <td>Table content</td>
+                            </tr>
+                            <tr>
+                                <td>Table content</td>
+                                <td>Table content</td>
+                                <td>Table content</td>
+                                <td>Table content</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div class="col-lg-6 content-other">
+                    <form id="myForm" action="#" method="post">
+
+                        <div>
+                            <label for="name">Text Input:</label>
+                            <input type="text" name="name" id="name" value="" tabindex="1">
+                        </div>
+
+                        <div>
+                            <h4>Radio Button Choice</h4>
+
+                            <label for="radio-choice-1">Choice 1</label>
+                            <input type="radio" name="radio-choice-1" id="radio-choice-1" tabindex="2" value="choice-1">
+
+                            <label for="radio-choice-2">Choice 2</label>
+                            <input type="radio" name="radio-choice-2" id="radio-choice-2" tabindex="3" value="choice-2">
+                        </div>
+
+                        <div>
+                            <label for="select-choice">Select Dropdown Choice:</label>
+                            <select name="select-choice" id="select-choice">
+                                <option value="Choice 1">Choice 1</option>
+                                <option value="Choice 2">Choice 2</option>
+                                <option value="Choice 3">Choice 3</option>
+                            </select>
+                        </div>
+
+                        <div>
+                            <label for="textarea">Textarea:</label>
+                            <textarea cols="40" rows="8" name="textarea" id="textarea"></textarea>
+                        </div>
+
+                        <div>
+                            <label for="checkbox">Checkbox:</label>
+                            <input type="checkbox" name="checkbox">
+                        </div>
+
+                        <div>
+                            <input type="submit" value="Submit" class="btn btn-default">
+                        </div>
+
+                    </form>
+
+                    <button class="btn btn-default">Button</button>
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+    <script src="Scripts/jquery-1.10.2.js"></script>
+    <script src="Scripts/bootstrap.js"></script>
+    </body>
+
+</html>

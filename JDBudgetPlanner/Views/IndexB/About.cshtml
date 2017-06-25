@@ -1,0 +1,29 @@
+﻿@model JDBudgetPlanner.Models.Household
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+<section id="about">
+    <div class="module">
+        <div class="row">
+            <div class="col-md-4">
+                <div class="text-center technologies">
+                    <img src="~/ImagesB/icon-budget.png" class="img-responsive" alt="MVC">
+                    <img src="~/ImagesB/icon-budget1.png" class="img-responsive" alt="C#" />
+                   @* <img src="~/ImagesB/icon-entity.png" class="img-responsive" alt="Entity Framework" />*@
+
+                </div>
+            </div>
+            <div class="col-md-7">
+                <p>JD Budget Planner is a budgeting application built in Spring 2017 at Coder Foundry by Judner Antoine.</p>
+                <p>This application was built using C#, .Net MVC, Entity Framework, Javascript, and AJAX. The CSS template is built on top of Bootstrap using Sass.</p>
+                <p>To use JD Budget Planner, you need to @Html.ActionLink("register", "Register", "Account") for an account and log in, sign up using @Html.ActionLink("a third-party service", "Login", "Account"), or login as a @Html.ActionLink("guest", "IndexB", "IndexB"). Then simply create your own household to add transactions and budget items.</p>
+                   
+                 
+                <a href="http://jantoine-site.azurewebsites.net/#portfolio" target="_blank" class="btn btn-info">View my other projects</a>
+                @*<p><small>This web application was created as part of the Coder Foundry curriculum, spring 2017.</small></p>*@
+            </div>
+        </div>
+    </div>
+</section>

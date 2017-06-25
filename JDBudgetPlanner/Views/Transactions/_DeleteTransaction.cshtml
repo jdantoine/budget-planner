@@ -1,0 +1,74 @@
+﻿@model JDBudgetPlanner.Models.Transaction
+
+<h3>Delete Transaction</h3>
+
+<p>Are you sure you want to delete this?</p>
+<div>
+    <dl class="dl-horizontal">
+        <dt>
+            Date Created
+        </dt>
+
+        <dd>
+            @Model.Created.ToString("M/d/yy")
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Amount)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Amount)
+        </dd>
+        <dt>
+            Category
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.BudgetCategory.Name)
+        </dd>
+
+        <dt>
+            Reconciled?
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.IsReconciled)
+        </dd>
+
+        <dt>
+            Type
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.TransactionType)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Description)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Description)
+        </dd>
+
+        <dt>
+            Updated By
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Author.FullName)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm("DeleteTransaction", "Transactions")) {
+        @Html.AntiForgeryToken()
+        @Html.HiddenFor(model => model.Id)
+        @Html.HiddenFor(model => model.AccountId)
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Delete" class="btn btn-default" />
+        </div>
+    }
+</div>

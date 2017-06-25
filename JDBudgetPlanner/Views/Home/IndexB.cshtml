@@ -1,0 +1,33 @@
+﻿@model JDBudgetPlanner.Models.Household
+
+
+<br />
+<div class="centerRLR">
+    <div class="login-wrap">
+        <a href=@Url.Action("Login", "Account") class="btn btn-teal btn-block"><i class="fa fa-unlock"></i> Login</a>
+        <a href=@Url.Action("Register", "Account") class="btn btn-teal btn-block"><i class="fa fa-rocket fa-inverse"></i> Register</a>
+    </div>
+    <div class="login-wrap">
+        @using (Html.BeginForm("LoginGuest", "Account"))
+            {
+            @Html.AntiForgeryToken()
+            <button type="submit" class="btn btn-dark btn-block">Demo as Guest</button>
+        }
+        @using (Html.BeginForm("LoginGuestSuperUser", "Account"))
+            {
+            @Html.AntiForgeryToken()
+            <button type="submit" class="btn btn-dark btn-block">Demo as Guest SuperUser</button>
+        }
+    </div>
+</div>
+<div class="col-md-3 full-content-xsmall animated fadeInDownBig">
+    <div class="login-wrap">
+        <a class="section-scroll btn btn-teal btn-block btn-lg" href=@Url.Action("About", "Home")>Learn More</a>
+    </div>
+</div>
+
+@*<div class="row psd">
+        <div id="title" class="col-md-5" style="top: 400px;margin-left: 0px;right: 0px;left: 0px;">
+            <h4 style="color:#f0ad4e">  <a href=@Url.Action("About", "Home")>What is JD Bug Tracking<br />System?</a></h4>
+        </div>
+    </div>*@

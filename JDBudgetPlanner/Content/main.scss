@@ -1,0 +1,176 @@
+﻿$bg-color:  #EFFDE9; /* light green */
+$primary-color: #005F6B; /* dark blue */
+$secondary-color: #fff; /*white */
+$content-bg-color: #AFD6AB;/* medium green */
+
+$secondary-color-hover: #171535; /* blue */
+
+/* FONTS */
+$header-font: 'Lobster', 'Times New Roman', serif;
+$subheader-font:'Montserrat', sans-serif;
+$content-font: 'Roboto', 'Arial', sans-serif;
+
+@mixin button($bg-color, $shadow-color) {
+    background-color: $bg-color;
+	border-bottom: 5px solid $shadow-color;
+	//text-shadow: 0px -2px $shadow-color;
+    border-radius: 0;
+	position: relative;
+	padding: 7px 20px;
+    float: left;
+	font-family: 'Roboto';
+    font-weight: 400;
+	font-size: 1.1em;
+	color: #FFF;
+	text-decoration: none;
+
+    transition: all 0.2s;
+	-webkit-transition: all 0.2s;
+}
+
+@mixin button-active {
+	transform: translate(0px,5px);
+    -webkit-transform: translate(0px,5px);
+	border-bottom: 1px solid;
+}
+
+.float-right{
+    float: right;
+} 
+
+.fancy-border {
+    border: 1px solid rgba(0,0,0,0.1);
+    box-shadow: inset 0 1px 0 rgba(255,255,255,0.7);
+}
+
+body {
+    box-sizing: border-box;
+    font-size: 16px;
+    font-family: $content-font;
+    background: $bg-color;
+}
+
+// Navigation
+.brand {
+    text-align: center;
+    padding: 10px;
+    font-family: $header-font;
+    font-size: 2.4em;
+    background-color: $content-bg-color;
+}
+
+a.navbar-brand {
+    display: none;
+}
+
+nav.navbar.navbar-default {
+    @extend .fancy-border;
+    width: 100%;
+    border-radius: 0;
+    background: $primary-color;
+}
+
+.navbar-nav {
+    float: none;
+    li {
+        a {
+            font-family: $subheader-font;
+            font-size: 1.3em;
+        }
+    }
+}
+
+.navbar-default .navbar-nav > li > a {
+    color: $secondary-color;
+}
+
+.navbar-default .navbar-nav > li > a:hover {
+    color: $secondary-color;
+    background-color: $secondary-color-hover;
+    box-shadow: inset 0 1px 0 rgba(255,255,255,0.7);
+}
+
+.account-nav {
+    float: right;
+}
+//Rearrange heading at smaller screen sizes
+@media screen and (max-width: 768px) {
+    .brand {
+        display: none;
+    }
+
+    a.navbar-brand {
+        float: left;
+        display: block;
+        font-family: $header-font;
+        font-size: 2em;
+    }
+
+    .navbar-default .navbar-brand {
+        color: $secondary-color;
+    }
+
+    .navbar-default .navbar-brand:hover {
+        color: $secondary-color-hover;
+    }
+
+    .account-nav {
+        float: none;
+        width: 100%;
+        padding-left: 15px;
+        a {
+            width: 100%;
+        }
+    }
+
+    .float-right {
+        float: none;
+        display: block;
+    }
+}
+
+// Fonts
+p, h2, h3, h4, ul li, a, table {
+    font-family: $content-font;
+}
+
+h2, h3, h4 {
+    margin: 5px 0 25px;
+    font-weight: 600;
+}
+
+a {
+    color: $primary-color;
+}
+
+a:hover {
+    color: $secondary-color-hover;
+    text-decoration: none;
+}
+
+.content {
+    @extend .fancy-border;
+    box-shadow: inset 0 2px 0 rgba(255, 255, 255, 0.3);
+    background: $content-bg-color;
+    padding: 15px;
+    p {
+        margin: 5px;
+    }
+}
+
+p {
+    font-size: 1.05em;
+}
+
+.btn-default, .btn-default:hover, .btn-default:focus, .btn-default:visited {
+    @extend .fancy-border;
+    @include button($primary-color, $secondary-color-hover);
+}
+
+.btn-default:active {
+    @include button-active;
+}
+
+#socialLoginList .btn-default {   
+        margin: 0 5px;
+}

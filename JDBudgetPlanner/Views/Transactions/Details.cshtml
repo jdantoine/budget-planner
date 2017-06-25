@@ -1,0 +1,147 @@
+﻿@model JDBudgetPlanner.Models.Account
+@{var OriginalBalance = Model.Balance - Model.ReconciledAmount;}
+@{
+    ViewBag.Title = "Transactions";
+}
+<link href="//cdn.datatables.net/1.10.12/css/jquery.dataTables.min.css" rel="stylesheet" />
+<h2>
+    Transactions in @Model.Name
+    <span class="float-right">Balance: $@Model.Balance</span>
+</h2>
+
+@*@foreach (var item in Model.Transactions)
+{
+    if (item.Account.IsReconciled == false)
+    {
+        var OriginalBalance = Model.Balance - (item.Account.ReconciledAmount) ;
+        <h4 class="float-right text-danger">Unreconciled Balance: $@OriginalBalance</h4>
+    }
+}*@
+
+@if (Model.IsReconciled == false)
+{
+    <h4 class="float-right text-danger">Unreconciled Balance: $@OriginalBalance</h4>
+}
+
+@if (Model.Balance < 0)
+{
+    <h4 class="text-danger">Warning: Your account has been overdrawn.</h4>
+}
+<div class="row">
+    <div class="col-md-4 content" id="action">
+
+
+    </div>
+    <div class="col-md-8">
+        <a href="#" class="addTransaction" id="@Model.Id"><i class="glyphicon glyphicon-plus"></i> Add Transaction</a>
+        <a href="#" class="reconcileAccount" id="@Model.Id"><i class="glyphicon glyphicon-ok"></i> Reconcile Account</a>
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    
+                    <th>
+                        Date
+                    </th>
+                    <th>
+                        Description
+                    </th>
+                    <th>
+                        Category
+                    </th>
+                    <th>
+                        Amount
+                    </th>
+                    <th>
+                        Reconciled
+                    </th>
+                    <th>
+                        Updated By
+                    </th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                    @foreach (var item in Model.Transactions)
+                    {
+                        <tr>
+                            <td>
+                                @item.Created.ToString("M/d/yy")
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Description)
+                            </td>
+                            <td>
+                                @if(item.BudgetCategory == null)
+                                {
+                                   <span>Income</span>
+                                }
+                                else
+                                {
+                                  @Html.DisplayFor(modelItem => item.BudgetCategory.Name)
+                                }
+                            </td>
+                            <td>
+                                $@Html.DisplayFor(modelItem => item.Amount)
+                            </td>
+                            <td>
+                                <input type="checkbox" checked="@item.IsReconciled" disabled />
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Author.FullName)
+                            </td>
+                            <td>
+                                <a href="#" class="editTransaction" id="@item.Id"><i class="glyphicon glyphicon-pencil"></i></a>
+                                <a href="#" class="deleteTransaction" id="@item.Id"><i class="glyphicon glyphicon-remove"></i></a>
+                            </td>
+                        </tr>
+                    }
+            </tbody>
+            <tfoot>
+                <tr>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                </tr>
+            </tfoot>
+        </table>
+    </div>
+</div>
+<br /><br />
+
+@section Scripts {
+    <script type="text/javascript" language="javascript" src="//cdn.datatables.net/1.10.11/js/jquery.dataTables.min.js"></script>
+    <script src="~/Scripts/LoadPartials.js"></script>
+    <script src="~/Scripts/jquery.maskMoney.js"></script>
+    <script>
+        $(document).ready(function () {
+            $(document).on('change', '#TransactionType', function () {
+                $("div#categories").toggle();
+            });
+
+            $('#action').load('@Url.Action("_AddTransaction", "Transactions", new { id = Model.Id })', function() {
+                $('#Amount').maskMoney({ thousands: '', decimal: '.' });
+            });
+
+            $('.table').DataTable({
+                "order": [[ 1, "desc" ]],
+                "columns": [
+                  null,
+                  null,
+                  null,
+                  null,
+                  null,
+                  null,
+                  { "orderable": false }
+                ]
+            });
+           
+        });
+    </script>
+
+}
+
+
+

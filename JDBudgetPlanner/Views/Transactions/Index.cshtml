@@ -1,0 +1,126 @@
+﻿@model IEnumerable<JDBudgetPlanner.Models.Account>
+
+@{
+    ViewBag.Title = "Accounts";
+}
+<div class="row">
+        <h2>Accounts</h2>
+        <br />
+        @using (Html.BeginForm("AddAccount", "Transactions"))
+                {
+            @Html.AntiForgeryToken()
+
+            <div class="form-horizontal">
+                @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                <div class="form-group">
+                    <div class="col-md-6">
+                        <input type="text" placeholder="Account Name" name="AccountName" class="form-control" />
+                    </div>
+                    <div class="col-md-2">
+                        <input type="submit" value="Add Account" class="btn btn-default" />
+                    </div>
+                </div>
+            </div>
+        }
+</div>
+<div class="row" id="action">
+
+</div>
+    <div class="row">
+    <hr />
+    <p>Please select an account to view its transactions.</p>
+    <table class="table table-striped">
+        <tr>
+            <th>
+                Account
+            </th>
+            <th>
+                Balance
+            </th>
+            <th>
+                Reconciled
+            </th>
+            <th></th>
+        </tr>
+        <tbody>
+            @{ var Accounts = Model.Where(m => m.IsArchived == false); }
+                @foreach (var item in Accounts)
+                {
+                    <tr>
+                        <td>
+                            @Html.ActionLink(item.Name, "Details", new { id = item.Id })
+                        </td>
+                        <td>
+                            $@Html.DisplayFor(modelItem => item.Balance)
+                        </td>
+                        <td>
+                            <input type="checkbox" checked="@item.IsReconciled" />
+                        </td>
+                        <td>
+                            <a href="#" class="renameAccount" id="@item.Id"><i class="glyphicon glyphicon-pencil"></i></a>
+                            <a href="#" class="archiveAccount" id="@item.Id"><i class="glyphicon glyphicon-remove"></i></a>
+                        </td>
+                    </tr>
+                }
+        </tbody>
+    </table>
+    </div>
+    <div class="row">
+    @{ var Archives = Model.Where(m => m.IsArchived == true).ToList(); }
+    @if (Archives.Count() != 0)
+    {
+    <h4 class="text-danger">Archived Accounts</h4>
+    <table class="table table-striped">
+        <tr>
+            <th>
+                Account
+            </th>
+            <th>
+                Balance
+            </th>
+            <th>
+                Created
+            </th>
+            <th></th>
+        </tr>
+        <tbody>
+                @foreach (var item in Archives)
+                {
+                    <tr>
+                        <td>
+                            @item.Name
+                        </td>
+                        <td>
+                            $@Html.DisplayFor(modelItem => item.Balance)
+                        </td>
+                        <td>
+                            @item.Created.ToString("M/d/yy H:mm")
+                        </td>
+                        <td>
+                            @using (Html.BeginForm("ReactivateAccount", "Transactions"))
+                            {
+                                @Html.AntiForgeryToken();
+                                <input type="hidden" value="@item.Id" name="Id" />
+
+                                <input type="submit" value="Reactivate" class="btn btn-default" />
+
+                            }
+                        </td>
+                    </tr>
+                }
+        </tbody>
+    </table>
+    }
+</div>
+
+@section Scripts {
+    <script>
+        $(document).ready(function () {
+            $(document).on('click', '.cancel', function () {
+                $("div#action").empty();
+            });
+
+        });
+    </script>
+    <script src="~/Scripts/LoadPartials.js"></script>
+}

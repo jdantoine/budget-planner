@@ -1,0 +1,60 @@
+﻿@model JDBudgetPlanner.Models.Budget
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<div class="row">
+    <div class="col-md-6">
+        <h2>Budget</h2>
+        <h3>Total Monthly Budget: $@Model.Amount</h3>
+        <hr />
+        <h3>Budgeted Expenses</h3>
+        <a href="#" class="addBudgetItem" id="@Model.Id"><i class="glyphicon glyphicon-plus"></i> Add Budget Item</a>
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th>Category</th>
+                    <th>Amount</th>
+                    <th>Annual Frequency</th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model.BudgetItems)
+                {
+                    <tr>
+                        <td>@item.BudgetCategory.Name</td>
+                        <td>$@item.Amount</td>
+                        <td>@item.Frequency</td>
+                        <td>
+                            <a href="#" class="editBudgetItem" id="@item.Id"><i class="glyphicon glyphicon-pencil"></i></a>
+                            <a href="#" class="deleteBudgetItem" id="@item.Id"><i class="glyphicon glyphicon-remove"></i></a>
+</td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+    <div class="col-md-offset-1 col-md-5 content" id="action">
+         @if (TempData["EditError"] != null)
+         {
+        <p class="text-danger">@TempData["EditError"]</p>
+        @Html.Action("_EditBudgetItem", "Budget", new { id = TempData["Id"] })
+         }
+         else {
+        <p class="text-danger">@TempData["Error"]</p>
+        @Html.Action("_AddBudgetItem", "Budget", new { id = Model.Id })
+         }
+    </div>
+</div>
+
+@section Scripts {
+    <script src="~/Scripts/LoadPartials.js"></script>
+    <script src="~/Scripts/jquery.maskMoney.js"></script>  
+    <script>
+        $(document).ready(function () {
+            $('#Amount').maskMoney();
+        });
+    </script> 
+}

@@ -1,0 +1,49 @@
+﻿@model JDBudgetPlanner.Models.ChangeNameViewModel
+@{
+    ViewBag.Title = "Change Name";
+}
+
+<div class="col-md-12 subnav">
+    <h1>Change Your Name</h1>
+</div>
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-12">
+
+            @using (Html.BeginForm("ChangeName", "Manage", FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
+            {
+                @Html.AntiForgeryToken()
+                <hr />
+
+                <div class="form-group">
+                    <div class="col-md-10">
+                        <input type="text" name="NewFirstName" value="@Model.OldFirstName" />
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <div class="col-md-10">
+                        <input type="text" name="NewLastName" value="@Model.OldLastName" />
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <div class="col-md-offset-2 col-md-10">
+                        <input type="submit" value="Change name" class="btn btn-default" />
+                    </div>
+                </div>
+            }
+
+
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}
+
+
+
+

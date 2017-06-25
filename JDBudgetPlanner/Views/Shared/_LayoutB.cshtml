@@ -1,0 +1,102 @@
+﻿
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JD Budget Planner - by judner antoine</title>
+    @Styles.Render("~/ContentB/css")
+    @Scripts.Render("~/bundlesB/modernizr")
+    <link href='https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,700' rel='stylesheet' type='text/css'>
+    <link href='https://fonts.googleapis.com/css?family=Bangers' rel='stylesheet' type='text/css'>
+    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css?family=Roboto:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800" rel="stylesheet" type="text/css">
+    <link href='https://fonts.googleapis.com/css?family=Montserrat:700' rel='stylesheet' type='text/css'>
+    <link href='https://fonts.googleapis.com/css?family=Lobster:400' rel='stylesheet' type='text/css'>
+    <link href="~/ContentB/SiteB.css" rel="stylesheet" />
+</head>
+<body class="p-t-0 m-a-0">
+    <div class="container-fluid">
+        <!-- BEGIN NAVBAR CONTENT-->
+        <div class="navbar navbar-default" role="navigation">
+            <div class="container-fluid">
+                <!-- Navbar Header -->
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                        <i class="fa fa-angle-double-down"></i>
+                    </button>
+                </div>
+                <!-- /navbar header -->
+                <!-- Navbar Collapse -->
+                <div class="navbar-collapse collapse">
+                    <!-- left navbar -->
+                    <ul class="nav navbar-nav top nav-pad">
+                        <li><a href="http://jantoine.site.azurewebsites.net" target="_blank" style="color: white" class="text-title-sm">judner antoine</a></li>
+                    </ul>
+                    <!-- right navbar -->
+                    <ul class="nav navbar-nav navbar-right top-navbar nav-pad">
+                        <li><a href=@Url.Action("Indexb", "Indexb") class="text-title app-title">JD Budget Planner</a></li>
+                        @*<li>@Html.Partial("_LoginPartial")</li>*@
+                        <li><a class="section-scroll" href=@Url.Action("About", "Indexb")>About</a></li>
+                        <li><a class="section-scroll" href="#contact">Contact</a></li>
+
+                    </ul>
+                </div><!-- /.navbar-collapse -->
+            </div><!-- /div .container-->
+        </div>
+        <!-- END NAVBAR CONTENT-->
+        <section id="hero">
+            @*<div class="body content rows scroll-y">*@
+            @RenderBody()
+            @*</div>*@
+        </section>
+        <!-- ABOUT SECTION -->
+        @*<section id="about">
+                <div class="module">
+                    <div class="row">
+                        <div class="col-md-4">
+                            <div class="text-center technologies">
+                                <img src="~/Images/icon-mvc.png" class="img-responsive img-circle" alt="MVC">
+                                <img src="~/Images/icon-c.png" class="img-responsive img-circle" alt="C#" />
+                                <img src="~/Images/icon-entity.png" class="img-responsive img-circle" alt="Entity Framework" />
+                                <img src="~/Images/icon-javascript.png" class="img-responsive img-circle" alt="JavaScript">
+                            </div>
+                        </div>
+                        <div class="col-md-7">
+                            <h2>About this Web Application</h2>
+                            <h4>Experience the ease of managing your money with an app that collects accurate data, shows just what you want to see, and keeps everyone else out of your business.</h4>
+                            <p>JD Budget Planner is a personal financial tool created using the Model-View-Controller pattern, which quickly renders accurate data specific to each user's interaction with the application. Data handling is established using code-first migrations through the help of Entity Framework.  C# is the powerhouse of processing, making use of numerous full and partial views, layouts, helper extensions, view models, and more. This information is all brought to the page through Razor, HTML, and CSS. Javascript provides smooth aesthetic touches and interactive page elements.</p>
+                            <p>
+                                Special features of this app include:
+                                <ul>
+                                    <li>User authentication and heirarchical role structure, which changes available views and actions</li>
+                                    <li>Built-in security to prevent cross-site scripting and other attacks</li>
+                                    <li>Time-sensitive invite codes for new users</li>
+                                    <li>Real-time calculations and alerts to users</li>
+                                    <li>Demo options for normal (restricted) and SuperUser roles</li>
+                                    <li>Clean, responsive tables and charts created with Bootstrap</li>
+                                    <li>Soft-delete features to prevent loss of data</li>
+                                </ul>
+                            </p>
+                            <a href="https://github.com/jantoine/BudgetApp" class="btn btn-teal">View Project on GitHub</a>
+                            <p><small>This web application was created as part of the Coder Foundry curriculum, winter 2016.</small></p>
+                        </div>
+                    </div>
+                </div>
+            </section>*@
+
+
+
+        <div class="clearfix"></div>
+        <footer>
+            <p class="text-center" style="color:#262626">
+                Created using ASP.NET MVC, C#, JS, Bootstrap, EF/SQL Server<br>
+                &copy; 2017 - Judner Antoine
+            </p>
+        </footer>
+    </div>
+    @Scripts.Render("~/bundlesB/jquery")
+    @Scripts.Render("~/bundlesB/bootstrap")
+    @RenderSection("scripts", required: false)
+</body>
+</html>

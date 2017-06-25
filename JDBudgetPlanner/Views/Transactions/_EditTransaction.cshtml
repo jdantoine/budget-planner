@@ -1,0 +1,48 @@
+﻿@model JDBudgetPlanner.Models.Transaction
+
+@using (Html.BeginForm("EditTransaction", "Transactions"))
+{
+    @Html.AntiForgeryToken()
+    
+    <div class="form-horizontal">
+        <h3>Edit @Model.TransactionType Transaction</h3>
+        <hr />
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        @Html.HiddenFor(model => model.Id)
+        @Html.HiddenFor(model => model.AccountId)
+        @Html.HiddenFor(model => model.TransactionType)
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Amount, htmlAttributes: new { @class = "control-label col-md-3" })
+            <div class="col-md-9">
+                @Html.EditorFor(model => model.Amount, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Amount, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        @if (Model.TransactionType == JDBudgetPlanner.Models.TransactionType.Expense)
+        {
+        <div class="form-group" id="categories">
+            <label for="model.BudgetCategoryId" class="control-label col-md-3">Category</label>
+            <div class="col-md-9">
+                @Html.DropDownList("BudgetCategoryId", new SelectList(ViewBag.BudgetCategories, "Id", "Name", Model.BudgetCategory), new { @class = "form-control" })
+            </div>
+        </div>
+        }
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Description, htmlAttributes: new { @class = "control-label col-md-3" })
+            <div class="col-md-9">
+                @Html.EditorFor(model => model.Description, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Description, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Save" class="btn btn-default" />
+            </div>
+        </div>
+    </div>
+}
+

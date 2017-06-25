@@ -1,0 +1,191 @@
+/* light green */
+/* dark blue */
+/*white */
+/* medium green */
+/* blue */
+/* FONTS */
+/* line 37, main.scss */
+.float-right {
+  float: right;
+}
+
+/* line 41, main.scss */
+.fancy-border, nav.navbar.navbar-default, .content, .btn-default, .btn-default:hover, .btn-default:focus, .btn-default:visited {
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.7);
+}
+
+.technologies img {
+    
+
+   
+    margin-bottom:15px;
+}
+
+/* line 46, main.scss */
+body {
+  box-sizing: border-box;
+  font-size: 16px;
+  font-family: "Roboto", "Arial", sans-serif;
+  background: rgb(255, 247, 230);
+}
+
+/* line 54, main.scss */
+.brand {
+  text-align: right;
+  padding: 10px;
+  font-family: "Lobster", "Times New Roman", serif;
+  font-size: 2.4em;
+  color:white;
+  background-color: #AFD6AB;
+  background-image:url("../ImagesB/FinanceBrand.jpg")
+}
+
+/* line 62, main.scss */
+a.navbar-brand {
+  display: none;
+}
+
+/* line 66, main.scss */
+nav.navbar.navbar-default {
+  width: 100%;
+  border-radius: 0;
+  background: #a4bf62;
+}
+
+/* line 73, main.scss */
+.navbar-nav {
+  float: none;
+}
+/* line 76, main.scss */
+.navbar-nav li a {
+  /*font-family: "Montserrat", sans-serif;
+  font-size: 1.3em;*/
+}
+
+/* line 83, main.scss */
+.navbar-default .navbar-nav > li > a {
+  color: #fff;
+}
+
+/* line 87, main.scss */
+.navbar-default .navbar-nav > li > a:hover {
+  color: #fff;
+  background-color: #171535;
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.7);
+}
+
+/* line 93, main.scss */
+.account-nav {
+  float: right;
+}
+
+@media screen and (max-width: 768px) {
+  /* line 98, main.scss */
+  .brand {
+    display: none;
+  }
+
+  /* line 102, main.scss */
+  a.navbar-brand {
+    float: left;
+    display: block;
+    font-family: "Lobster", "Times New Roman", serif;
+    font-size: 2em;
+    
+  }
+
+  /* line 109, main.scss */
+  .navbar-default .navbar-brand {
+    color: #fff;
+    
+  }
+
+  /* line 113, main.scss */
+  .navbar-default .navbar-brand:hover {
+    color: #171535;
+  }
+
+  /* line 117, main.scss */
+  .account-nav {
+    float: none;
+    width: 100%;
+    padding-left: 15px;
+  }
+  /* line 121, main.scss */
+  .account-nav a {
+    width: 100%;
+  }
+
+  /* line 126, main.scss */
+  .float-right {
+    float: none;
+    display: block;
+  }
+}
+/* line 133, main.scss */
+p, h2, h3, h4, ul li, a, table {
+  font-family: "Roboto", "Arial", sans-serif;
+}
+
+/* line 137, main.scss */
+h2, h3, h4 {
+  margin: 5px 0 25px;
+  font-weight: 600;
+}
+
+/* line 142, main.scss */
+a {
+  color: #005F6B;
+}
+
+/* line 146, main.scss */
+a:hover {
+  color: #171535;
+  text-decoration: none;
+}
+
+/* line 151, main.scss */
+.content {
+  box-shadow: inset 0 2px 0 rgba(255, 255, 255, 0.3);
+  background: rgb(192, 152, 83);
+  padding: 15px;
+}
+/* line 156, main.scss */
+.content p {
+  margin: 5px;
+}
+
+/* line 161, main.scss */
+p {
+  font-size: 1.05em;
+}
+
+/* line 165, main.scss */
+.btn-default, .btn-default:hover, .btn-default:focus, .btn-default:visited {
+  background-color: #a4bf62;
+  border-bottom: 5px solid #eacb74;
+  border-radius: 0;
+  position: relative;
+  padding: 7px 20px;
+  float: left;
+  font-family: 'Roboto';
+  font-weight: 400;
+  font-size: 1.1em;
+  color: #FFF;
+  text-decoration: none;
+  transition: all 0.2s;
+  -webkit-transition: all 0.2s;
+}
+
+/* line 170, main.scss */
+.btn-default:active {
+  transform: translate(0px, 5px);
+  -webkit-transform: translate(0px, 5px);
+  border-bottom: 1px solid;
+}
+
+/* line 174, main.scss */
+#socialLoginList .btn-default {
+  margin: 0 5px;
+}

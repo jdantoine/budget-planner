@@ -1,0 +1,100 @@
+﻿@model JDBudgetPlanner.Models.Household
+
+@{
+    ViewBag.Title = "Index";
+    var MsgSent = ViewBag.Message;
+}
+
+<h2>Household</h2>
+
+<div class="row">
+    <div class="col-md-8">
+        <div class="col-md-12">
+            <h3>Members</h3>
+            <table class="table table-striped">
+                <thead>
+                    <tr>
+                        <th>Name</th>
+                        <th>Email</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var user in Model.Users)
+                    {
+                        <tr>
+                            <td>@user.FullName</td>
+                            <td>@user.Email</td>
+                        </tr>
+                    }
+
+                </tbody>
+            </table>
+        </div>
+
+        <div class="col-md-12">
+            <h3>Invite</h3>
+            <p>Invite another user to join your household.</p>
+            @using (Html.BeginForm("InviteUser", "Household"))
+            {
+                @Html.AntiForgeryToken()
+
+                <div class="form-horizontal">
+                    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                    @Html.HiddenFor(model => model.Id)
+
+                        <div class="form-group">
+                            <p class="col-xs-12 text-success">@MsgSent</p>
+                            <label for="inviteEmail" class="control-label col-md-2">Email</label>
+                            <div class="col-md-10">
+                                <input type="text" name="inviteEmail" id="inviteEmail" class="form-control" />
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-md-10">
+                                <input type="submit" value="Send Invitation" class="btn btn-default" />
+                            </div>
+                        </div>
+                    </div>
+            }
+        </div>
+
+        <div class="col-md-12">
+            <h3>Leave</h3>
+            <p class="col-xs-12 text-danger">@ViewBag.Error</p>
+            <p>Leave your current household and start another one.</p>
+            @using (Html.BeginForm("LeaveHousehold", "Household"))
+            {
+                @Html.AntiForgeryToken()
+
+                <div class="form-horizontal">
+                    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                    @Html.HiddenFor(model => model.Id)
+
+                    <div class="form-group col-xs-12">                   
+                        <input type="checkbox" name="confirmLeaveHousehold" value="true" class="col-xs-1" /> 
+                        <p class="col-xs-10">I understand that I will no longer have access to my current household's accounts.</p>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-md-11">
+                            <input type="submit" value="Leave Household" class="btn btn-default" />
+                        </div>
+                    </div>
+                </div>
+            }
+        </div>
+
+
+    </div>
+    <div class="col-md-4">
+        <div class="col-md-10 content">
+            <h3>About Households</h3>
+            <p>Households are how we group accounts and users.</p>
+            <p>Each user belongs to only one household, but the household can have many users.</p>
+            <p>Each user in your household has full access to all account data.</p>
+        </div>
+
+    </div>
+
+</div>
+
+

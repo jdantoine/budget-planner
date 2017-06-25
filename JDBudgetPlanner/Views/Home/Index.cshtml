@@ -1,0 +1,135 @@
+﻿@model JDBudgetPlanner.Models.Household
+@{
+    ViewBag.Title = "Dashboard";
+    string[] MonthStrings = { "January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December" };
+    var CurrentMonth = DateTime.Now.Month;
+    var CurrentYear = DateTime.Now.Year;
+}
+
+<div class="row">
+    <div class="col-md-3 content">
+        <h3>Accounts</h3>
+        @foreach (var account in Model.Accounts)
+        {
+            if (account.IsArchived == false)
+            {
+            <h4>@Html.ActionLink(account.Name, "Details", "Transactions", new { controller = "Transactions", action = "Details", id = account.Id}, new { id = account.Id })</h4>
+            <h4>$@account.Balance</h4>
+            <hr />
+            }
+        }
+    </div>
+
+    <div class="col-md-9" id="transactionsByMonth">
+        <h3>Transactions By Month</h3>
+        <div class="row">
+            <div class="col-md-4">
+
+                <div class="form-horizontal">
+                    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                    <div class="form-group">
+                        <div class="col-md-6">
+                            <select name="month" class="monthDropdown form-control">
+                                @for (var i = 0; i < 12; i++)
+                                {
+                                    var monthValue = i + 1;
+                                    <option value = "@monthValue">@MonthStrings.GetValue(i)</option>
+                                }
+                            </select>
+
+                        </div>
+                        <div class="col-md-6">
+                            <select name="year" class="yearDropdown form-control">
+                                @for (var i = 0; i < 5; i++)
+                                {
+
+                                    <option>@(CurrentYear - i)</option>
+                                }
+                            </select>
+                       </div>
+
+                    </div>
+
+                    <div class="form-group">
+                        <div class="col-md-10">
+                            <input type="submit" value="Display" class="btn btn-default" id="displayTransactions" />
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+            <div class="col-md-7" id="pieChart" style="height:300px">
+
+            </div>
+        </div>
+    </div>
+</div>
+<div class="row">
+    <div class="col-md-12" id="budgetVsTransactions">
+        <h3>Budget vs. Transactions</h3>
+        <div class="row">
+            <div class="col-md-3">
+
+                <div class="form-horizontal">
+                    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                    <div class="form-group">
+                        <div class="col-md-6">
+                            <select name="month" class="monthDropdown form-control">
+                                @for (var i = 0; i < 12; i++)
+                                {
+                                    var monthValue = i + 1;
+                                    <option value="@monthValue">@MonthStrings.GetValue(i)</option>
+                                }
+                            </select>
+
+                        </div>
+                        <div class="col-md-6">
+                            <select name="year" class="yearDropdown form-control">
+                                @for (var i = 0; i < 5; i++)
+                                {
+
+                                    <option>@(CurrentYear - i)</option>
+                                }
+                            </select>
+                        </div>
+
+                    </div>
+
+                    <div class="form-group">
+                        <div class="col-md-10">
+                            <input type="submit" value="Display" class="btn btn-default" id="displayBudgetVsTransactions" />
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+            <div class="col-md-9" id="comparisonChart" style="height:300px">
+
+            </div>
+            
+        </div>
+        <br /><br /><br />
+
+    </div>
+
+</div>
+
+@section Scripts {
+    <script type="text/javascript" language="javascript" src="~/Scripts/canvasjs.min.js"></script>
+    <script type="text/javascript" language="javascript" src="~/Scripts/Dashboard.js"></script>
+    <script>
+        $(document).ready(function () {
+            var dashboard = new Dashboard();
+            dashboard.EnableCharts();
+            $('#pieChart').load('/Home/_TransactionsByMonth/' + @CurrentMonth + '/' + @CurrentYear, function (response) {
+                dashboard.LoadTransactionsPieChart(response);
+                dashboard.SetDropDownSelected("#transactionsByMonth", @CurrentMonth, @CurrentYear);
+            });
+
+            $('#comparisonChart').load('/Home/_BudgetVsTransactions/' + @CurrentMonth + '/' + @CurrentYear, function (response) {
+                dashboard.LoadBudgetVsTransactionsChart(response);
+                dashboard.SetDropDownSelected("#budgetVsTransactions", @CurrentMonth, @CurrentYear);
+            });
+        });
+    </script>
+}

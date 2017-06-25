@@ -1,0 +1,55 @@
+﻿@using JDBudgetPlanner.Models
+@model LoginViewModel
+@{
+    Layout = "~/Views/Shared/_LayoutB.cshtml";
+}
+@{
+    ViewBag.Title = "Log in";
+}
+<div class="row">
+    <div class="col-md-3 full-content-small animated fadeInDownBig">
+        <div class="login-wrap">
+            <h2 class="welcome-title"><strong>Login</strong></h2>
+            @using (Html.BeginForm("Login", "Account", new { ReturnUrl = ViewBag.ReturnUrl }, FormMethod.Post, new { role = "form" }))
+            {
+                @Html.AntiForgeryToken()
+                @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                <div class="form-group login-input">
+                    <i class="fa fa-user overlay"></i>
+                    @Html.TextBoxFor(m => m.Email, new { @class = "form-control text-input", placeholder = "Username" })
+                    @Html.ValidationMessageFor(m => m.Email, "", new { @class = "text-danger" })
+                </div>
+                <div class="form-group login-input">
+                    <i class="fa fa-key overlay"></i>
+                    @Html.PasswordFor(m => m.Password, new { @class = "form-control text-input", placeholder = "Password" })
+                    @Html.ValidationMessageFor(m => m.Password, "", new { @class = "text-danger" })
+                </div>
+                    <div class="row">
+                        <div class="col-sm-6">
+                            <button type="submit" class="btn btn-teal btn-block"><i class="fa fa-unlock"></i> Login</button>
+                        </div>
+                        <div class="col-sm-6">
+                            <a href=@Url.Action("Register", "Account") class="btn btn-dark btn-block"><i class="fa fa-user fa-inverse"></i> Register</a>
+                        </div>
+                        <div class="form-group login-input">
+                            <div class="col-md-11 col-md-offset-1">
+                                <div class="checkbox">
+                                    @Html.CheckBoxFor(m => m.RememberMe)
+                                    <small>@Html.LabelFor(m => m.RememberMe, new { @style = "color:saddlebrown" })  @Html.ActionLink("Forgot your password?", "ForgotPassword", null, new { @style = "color:saddlebrown", @class = "pull-right" })</small>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+            }
+        </div>
+    </div>
+</div>
+<div id="logpart">
+    <section id="seclog">
+        @Html.Partial("_ExternalLoginsListPartial", new ExternalLoginListViewModel { ReturnUrl = ViewBag.ReturnUrl })
+    </section>
+</div>
+<!-- End Login Page -->
+@section Scripts {
+    @Scripts.Render("~/bundlesB/jqueryval")
+}

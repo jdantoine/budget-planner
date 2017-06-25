@@ -1,0 +1,25 @@
+﻿@{ var AccountId = ViewBag.AccountId; }
+<h3>Reconcile Account</h3>
+<p>If your actual account balance is different from the account balance shown, enter that actual account balance below. Your account will be reconciled to reflect the actual account balance.</p>
+<br />
+@using (Html.BeginForm("ReconcileAccount", "Transactions"))
+{
+    @Html.AntiForgeryToken()
+
+    <div class="form-horizontal">
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        <input type="hidden" name="AccountId" value="@AccountId" />
+        <div class="form-group">
+            <label for="ActualBalance" class="control-label col-md-4">Balance</label>
+            <div class="col-md-6">
+                <input type="text" name="ActualBalance" id="ActualBalance" />
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Reconcile Account" class="btn btn-default" />
+            </div>
+        </div>
+    </div>
+}
